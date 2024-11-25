@@ -31,9 +31,9 @@
 package com.cubrid.cubridmigration.oracle.parser;
 
 import com.cubrid.cubridmigration.oracle.parser.antlr4gen.*;
+import java.util.List;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
-import java.util.List;
 
 class PlConvOracleToCubrid {
 
@@ -57,9 +57,9 @@ class PlConvOracleToCubrid {
         ParseTreeWalker.DEFAULT.walk(oc, tree);
 
         String header = text.substring(0, oc.bodyStartOffset);
-        assert header != null; 
+        assert header != null;
         String body = text.substring(oc.bodyStartOffset);
-        assert body != null; 
+        assert body != null;
 
         header = header.trim();
         body = body.trim();
@@ -80,7 +80,7 @@ class PlConvOracleToCubrid {
 
         int curr = 0;
         StringBuilder sb = new StringBuilder();
-        for (OffsetCollector.Conversion c: conv) {
+        for (OffsetCollector.Conversion c : conv) {
             sb.append(text.substring(curr, c.start));
             sb.append(c.converter);
             curr = c.start + c.length;
@@ -113,6 +113,4 @@ class PlConvOracleToCubrid {
             this.msg = msg;
         }
     }
-
 }
-

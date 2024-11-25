@@ -32,16 +32,16 @@ package com.cubrid.cubridmigration.oracle.parser;
 
 import com.cubrid.cubridmigration.oracle.parser.antlr4gen.PloParser;
 import com.cubrid.cubridmigration.oracle.parser.antlr4gen.PloParserBaseListener;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.RuleNode;
-import java.util.List;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class OffsetCollector extends PloParserBaseListener {
 
@@ -67,8 +67,10 @@ public class OffsetCollector extends PloParserBaseListener {
 
         if (bodyStartOffset == 0) {
 
-            // NOTE: More than one routine definitions can exist because of local procedures and functions
-            //   Only the first entered (bodyStartOffset == 0) is the outermost one that we are interested in.
+            // NOTE: More than one routine definitions can exist because of local procedures and
+            // functions
+            //   Only the first entered (bodyStartOffset == 0) is the outermost one that we are
+            // interested in.
 
             Token isOrAs;
             if (ctx.IS() == null) {
@@ -135,6 +137,7 @@ public class OffsetCollector extends PloParserBaseListener {
     }
 
     private static Set<Integer> unsupportedTypes = new HashSet<>();
+
     static {
         unsupportedTypes.add(PloParser.LONG);
         unsupportedTypes.add(PloParser.LONG_RAW);
@@ -152,6 +155,7 @@ public class OffsetCollector extends PloParserBaseListener {
     }
 
     private static Set<Integer> supportedTypes = new HashSet<>();
+
     static {
         supportedTypes.add(PloParser.VARCHAR2);
         supportedTypes.add(PloParser.NCHAR);
@@ -164,6 +168,7 @@ public class OffsetCollector extends PloParserBaseListener {
     }
 
     private static Map<String, String> typeMap = new HashMap<>();
+
     static {
         typeMap.put("VARCHAR2", "VARCHAR");
         typeMap.put("NCHAR", "CHAR");
@@ -175,4 +180,3 @@ public class OffsetCollector extends PloParserBaseListener {
         typeMap.put("DATE", "DATETIME");
     }
 }
-

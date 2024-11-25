@@ -48,4 +48,3 @@ public class SyntaxError extends RuntimeException {
         return String.format("(%d, %d) %s", line, column, msg);
     }
 }
-

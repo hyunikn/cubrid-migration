@@ -31,9 +31,9 @@ public class ProcedureDDL {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProcedureDDL that = (ProcedureDDL) o;
-        return Objects.equals(header, that.header) &&
-            Objects.equals(body, that.body) &&
-            hasUnsupportedType == that.hasUnsupportedType;
+        return Objects.equals(header, that.header)
+                && Objects.equals(body, that.body)
+                && hasUnsupportedType == that.hasUnsupportedType;
     }
 
     @Override
